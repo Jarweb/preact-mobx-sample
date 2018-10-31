@@ -139,7 +139,6 @@ const webpackOpts = {
         ...config.devServer,
         historyApiFallback: true,
         compress: true,
-        // noInfo: true,
         quiet: false,
         contentBase: path.join(__dirname, 'dist'),
     },
@@ -201,7 +200,6 @@ const webpackOpts = {
                         loader: 'babel-loader',
                         options: {
                             cacheDirectory: true,
-                            ...config.babelOptions
                         }
                     }
                 ].filter((item) => item !== null)
@@ -420,7 +418,8 @@ if(isProd) {
     )
 }
 
-if(config.useBundleAnalyzer) {
+// npm run dev --analyze
+if (process.env.npm_config_analyze) {
     basePlugins.push(new BundleAnalyzerPlugin())
 }
 
